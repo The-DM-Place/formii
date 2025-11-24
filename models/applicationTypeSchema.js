@@ -17,6 +17,7 @@ const applicationTypeSchema = new Schema({
         default: []
     },
     acceptedRoleIds: { type: [String], default: [] },
+    acceptedMessage: { type: String, default: '' },
 });
 
 // static cool
@@ -80,6 +81,13 @@ applicationTypeSchema.statics.setAcceptedRoles = async function (id, roleIds) {
     const type = await this.findById(id);
     if (!type) throw new Error('Application type not found');
     type.acceptedRoleIds = Array.isArray(roleIds) ? roleIds : [roleIds];
+    return type.save();
+}
+
+applicationTypeSchema.statics.setAcceptedMessage = async function (id, message) {
+    const type = await this.findById(id);
+    if (!type) throw new Error('Application type not found');
+    type.acceptedMessage = message;
     return type.save();
 }
 
