@@ -27,7 +27,7 @@ module.exports = {
         if (Array.isArray(selectedApp.questions) && selectedApp.questions.length > 0) {
             embed.addFields({
                 name: 'Questions',
-                value: selectedApp.questions.map((q, i) => `${i + 1}. ${q}`).join('\n')
+                value: selectedApp.questions.map((q, i) => `${i + 1}. ${q.question}`).join('\n')
             });
         }
 
